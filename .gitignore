@@ -1,0 +1,120 @@
+# MolinAntro DAW - .gitignore
+
+# Build directories
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+dist/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compiled files
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Visual Studio
+*.suo
+*.user
+*.vcxproj.filters
+*.vcxproj.user
+.vs/
+*.sln.docstates
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# Dependencies
+vcpkg_installed/
+_deps/
+third_party/
+
+# Audio files (temporary)
+*.wav
+*.aiff
+*.mp3
+*.flac
+*.ogg
+temp_audio/
+
+# Project files (session autosaves)
+*.molina.autosave
+*.molina.backup
+.sessions/
+
+# Logs
+*.log
+logs/
+crash_dumps/
+
+# Plugin cache
+plugin_cache/
+*.vst3cache
+
+# User settings
+settings/user/
+presets/user/
+
+# Secrets and credentials
+*.key
+*.pem
+*.p12
+credentials.json
+.env
+
+# Package managers
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Documentation build
+docs/_build/
+docs/html/
+docs/latex/
+
+# Test artifacts
+test_results/
+coverage/
+*.gcov
+*.gcda
+*.gcno
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+.Trash-*
