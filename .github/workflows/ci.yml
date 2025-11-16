@@ -1,0 +1,122 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            cmake_preset: linux-release
+          - os: macos-latest
+            cmake_preset: macos-release
+          - os: windows-latest
+            cmake_preset: windows-release
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup C++ (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ninja-build \
+          libasound2-dev libjack-jackd2-dev \
+          libx11-dev libxext-dev libxrandr-dev libxinerama-dev \
+          libxcursor-dev libfreetype6-dev
+
+    - name: Setup C++ (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install cmake ninja
+
+    - name: Setup C++ (Windows)
+      if: runner.os == 'Windows'
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Configure CMake
+      run: |
+        cmake -B build -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
+          -DBUILD_TESTS=ON \
+          -DENABLE_ASAN=OFF
+
+    - name: Build
+      run: cmake --build build --config ${{ env.BUILD_TYPE }} -j 4
+
+    - name: Run Unit Tests
+      working-directory: build
+      run: ctest -C ${{ env.BUILD_TYPE }} -L unit --output-on-failure
+
+    - name: Run Integration Tests
+      working-directory: build
+      run: ctest -C ${{ env.BUILD_TYPE }} -L integration --output-on-failure
+
+    - name: Run E2E Tests
+      working-directory: build
+      run: ctest -C ${{ env.BUILD_TYPE }} -L e2e --output-on-failure
+
+    - name: Upload Test Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-${{ matrix.os }}
+        path: build/Testing/
+
+    - name: Build Installer
+      if: success()
+      run: |
+        cd build
+        cpack
+
+    - name: Upload Installer
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: installer-${{ matrix.os }}
+        path: build/*.{exe,dmg,deb,rpm}
+
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run clang-tidy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-tidy
+        # Will implement linting when code is ready
+
+    - name: Check formatting
+      run: |
+        # Will implement format checking when code is ready
+        echo "Format check placeholder"
+
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run security scanner
+      run: |
+        # Placeholder for security scanning
+        echo "Security scan placeholder"
