@@ -1,8 +1,17 @@
-# Plugin module - placeholder for future VST3/AU implementation
+# Plugin module - VST3/AU hosting and built-in plugins
 
-add_library(MolinAntro_Plugins INTERFACE)
+set(PLUGINS_SOURCES
+    PluginHost.cpp
+)
+
+add_library(MolinAntro_Plugins STATIC ${PLUGINS_SOURCES})
 
 target_include_directories(MolinAntro_Plugins
-    INTERFACE
+    PUBLIC
         ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(MolinAntro_Plugins
+    PUBLIC
+        MolinAntro_Core
 )

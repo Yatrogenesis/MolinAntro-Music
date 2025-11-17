@@ -25,12 +25,23 @@ target_link_libraries(MolinAntroDaw_Demo
         Threads::Threads
 )
 
+# Spectral processing demonstration executable
+add_executable(MolinAntroDaw_Spectral demo_spectral.cpp)
+
+target_link_libraries(MolinAntroDaw_Spectral
+    PRIVATE
+        MolinAntro_Core
+        MolinAntro_DSP
+        MolinAntro_Instruments
+        Threads::Threads
+)
+
 # Set executable properties
-set_target_properties(MolinAntroDaw MolinAntroDaw_Demo PROPERTIES
+set_target_properties(MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
 # Install
-install(TARGETS MolinAntroDaw MolinAntroDaw_Demo
+install(TARGETS MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral
     RUNTIME DESTINATION bin
 )

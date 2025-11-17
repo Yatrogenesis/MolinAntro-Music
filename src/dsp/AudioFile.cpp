@@ -198,6 +198,24 @@ bool AudioFile::saveWAV(const std::string& filepath,
         }
 
         file.write(reinterpret_cast<const char*>(tempBuffer.data()), dataSize);
+    } else if (bitDepth == 24) {
+        std::vector<uint8_t> tempBuffer(dataSize);
+
+        // Interleave and convert to 24-bit
+        int bytesPerSample = 3;
+        for (int i = 0; i < numSamples; ++i) {
+            for (int ch = 0; ch < numChannels; ++ch) {
+                float sample = std::clamp(buffer.getReadPointer(ch)[i], -1.0f, 1.0f);
+                int32_t value = static_cast<int32_t>(sample * 8388607.0f);
+
+                int offset = (i * numChannels + ch) * bytesPerSample;
+                tempBuffer[offset] = value & 0xFF;
+                tempBuffer[offset + 1] = (value >> 8) & 0xFF;
+                tempBuffer[offset + 2] = (value >> 16) & 0xFF;
+            }
+        }
+
+        file.write(reinterpret_cast<const char*>(tempBuffer.data()), dataSize);
     } else if (bitDepth == 32) {
         std::vector<float> tempBuffer(numSamples * numChannels);
 
