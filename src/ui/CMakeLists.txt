@@ -1,8 +1,9 @@
-# UI module - placeholder for future Qt6/JUCE implementation
-# For MVP, we use console-based UI
+# UI module - Terminal and GUI support
+# Includes: Console UI, Advanced Terminal UI, Qt6 framework (TBD)
 
 set(UI_SOURCES
     ConsoleUI.cpp
+    TerminalUI.cpp
 )
 
 add_library(MolinAntro_UI STATIC ${UI_SOURCES})
