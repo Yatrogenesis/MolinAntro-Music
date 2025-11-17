@@ -57,6 +57,7 @@ find_package(Threads REQUIRED)
 # Core library
 add_subdirectory(src/core)
 add_subdirectory(src/dsp)
+add_subdirectory(src/midi)
 add_subdirectory(src/ui)
 add_subdirectory(src/plugins)
 add_subdirectory(src/utils)
