@@ -5,7 +5,7 @@ include(cmake/Version.cmake)
 
 project(MolinAntroDaw
     VERSION ${MOLINANTRO_VERSION}
-    DESCRIPTION "Professional Digital Audio Workstation with SOTA Features"
+    DESCRIPTION "Professional DAW with AI Voice Cloning, Neural Mastering & SOTA Features (ACME Edition)"
     LANGUAGES CXX C
 )
 
@@ -65,6 +65,10 @@ add_subdirectory(src/instruments)
 add_subdirectory(src/ui)
 add_subdirectory(src/plugins)
 add_subdirectory(src/utils)
+
+# AI Module (ACME Edition) - Coming soon
+# Requires: ONNX Runtime, PyTorch/LibTorch, RubberBand, Essentia
+# add_subdirectory(src/ai)
 
 # Standalone application
 if(BUILD_STANDALONE)
