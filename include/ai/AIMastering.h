@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/AudioBuffer.h"
+#include "midi/MIDIEngine.h"
 #include <string>
 #include <vector>
 #include <map>

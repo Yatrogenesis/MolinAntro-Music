@@ -36,12 +36,25 @@ target_link_libraries(MolinAntroDaw_Spectral
         Threads::Threads
 )
 
+# AI features demonstration executable (ACME Edition)
+add_executable(MolinAntroDaw_AI demo_ai.cpp)
+
+target_link_libraries(MolinAntroDaw_AI
+    PRIVATE
+        MolinAntro_Core
+        MolinAntro_DSP
+        MolinAntro_MIDI
+        MolinAntro_Instruments
+        MolinAntro_AI
+        Threads::Threads
+)
+
 # Set executable properties
-set_target_properties(MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral PROPERTIES
+set_target_properties(MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral MolinAntroDaw_AI PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
 # Install
-install(TARGETS MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral
+install(TARGETS MolinAntroDaw MolinAntroDaw_Demo MolinAntroDaw_Spectral MolinAntroDaw_AI
     RUNTIME DESTINATION bin
 )

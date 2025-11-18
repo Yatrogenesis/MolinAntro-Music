@@ -26,3 +26,26 @@ gtest_discover_tests(UnitTests
     PROPERTIES
         LABELS "unit"
 )
+
+# AI Module Tests (ACME Edition)
+add_executable(AITests AITests.cpp)
+
+target_link_libraries(AITests
+    PRIVATE
+        MolinAntro_Core
+        MolinAntro_DSP
+        MolinAntro_MIDI
+        MolinAntro_AI
+        GTest::gtest_main
+        GTest::gmock
+)
+
+target_include_directories(AITests
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+gtest_discover_tests(AITests
+    PROPERTIES
+        LABELS "ai;unit"
+)

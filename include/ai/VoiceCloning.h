@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/AudioBuffer.h"
+#include "midi/MIDIEngine.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -220,7 +221,7 @@ public:
      */
     Core::AudioBuffer synthesize(const std::string& text,
                                 const Voice& voice,
-                                const ProsodySettings& prosody = ProsodySettings());
+                                const ProsodySettings& prosody);
 
     /**
      * @brief Get available voices
@@ -301,7 +302,7 @@ public:
     Core::AudioBuffer synthesize(const std::vector<MIDI::Note>& midiNotes,
                                 const std::string& lyrics,
                                 VoiceStyle style,
-                                const Expression& defaultExpression = Expression());
+                                const Expression& defaultExpression);
 
     /**
      * @brief Synthesize from phoneme sequence (advanced)

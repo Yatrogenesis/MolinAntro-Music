@@ -209,6 +209,9 @@ private:
  */
 class KeyDetector {
 public:
+    KeyDetector();
+    ~KeyDetector();
+
     /**
      * @brief Detected key
      */
@@ -245,6 +248,9 @@ private:
  */
 class MelodyExtractor {
 public:
+    MelodyExtractor();
+    ~MelodyExtractor();
+
     /**
      * @brief Extracted melody
      */
@@ -276,6 +282,9 @@ private:
  */
 class AudioToMIDI {
 public:
+    AudioToMIDI();
+    ~AudioToMIDI();
+
     /**
      * @brief Transcription settings
      */
