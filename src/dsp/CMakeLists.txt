@@ -1,5 +1,8 @@
 set(DSP_SOURCES
     AudioFile.cpp
+    Effects.cpp
+    SpectralProcessor.cpp
+    StemSeparation.cpp
 )
 
 add_library(MolinAntro_DSP STATIC ${DSP_SOURCES})

@@ -1,0 +1,50 @@
+# MolinAntro DAW Version Information - ACME Edition
+set(MOLINANTRO_VERSION_MAJOR 3)
+set(MOLINANTRO_VERSION_MINOR 0)
+set(MOLINANTRO_VERSION_PATCH 0)
+set(MOLINANTRO_VERSION_TWEAK 0)
+
+set(MOLINANTRO_VERSION "${MOLINANTRO_VERSION_MAJOR}.${MOLINANTRO_VERSION_MINOR}.${MOLINANTRO_VERSION_PATCH}")
+set(MOLINANTRO_VERSION_FULL "${MOLINANTRO_VERSION}.${MOLINANTRO_VERSION_TWEAK}")
+
+# Build information
+string(TIMESTAMP MOLINANTRO_BUILD_DATE "%Y-%m-%d")
+string(TIMESTAMP MOLINANTRO_BUILD_TIME "%H:%M:%S")
+string(TIMESTAMP MOLINANTRO_BUILD_TIMESTAMP "%Y%m%d%H%M%S")
+
+# Git information
+find_package(Git QUIET)
+if(GIT_FOUND)
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE MOLINANTRO_GIT_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+    )
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE MOLINANTRO_GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+    )
+else()
+    set(MOLINANTRO_GIT_COMMIT "unknown")
+    set(MOLINANTRO_GIT_BRANCH "unknown")
+endif()
+
+# Configuration
+message(STATUS "MolinAntro DAW Version: ${MOLINANTRO_VERSION_FULL}")
+message(STATUS "Build Date: ${MOLINANTRO_BUILD_DATE} ${MOLINANTRO_BUILD_TIME}")
+message(STATUS "Git Commit: ${MOLINANTRO_GIT_COMMIT}")
+message(STATUS "Git Branch: ${MOLINANTRO_GIT_BRANCH}")
+
+# Generate version header
+configure_file(
+    ${CMAKE_SOURCE_DIR}/include/Version.h.in
+    ${CMAKE_BINARY_DIR}/include/Version.h
+    @ONLY
+)
+
+include_directories(${CMAKE_BINARY_DIR}/include)

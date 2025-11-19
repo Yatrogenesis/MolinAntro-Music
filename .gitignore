@@ -2,11 +2,13 @@
 
 # Build directories
 build/
+build-*/
 cmake-build-*/
 out/
 bin/
 lib/
 dist/
+packages/
 
 # IDE and editor files
 .vscode/

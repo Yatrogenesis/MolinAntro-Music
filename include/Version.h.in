@@ -1,0 +1,48 @@
+#pragma once
+
+// MolinAntro DAW Version Information
+// Auto-generated from Version.h.in
+
+#define MOLINANTRO_VERSION_MAJOR @MOLINANTRO_VERSION_MAJOR@
+#define MOLINANTRO_VERSION_MINOR @MOLINANTRO_VERSION_MINOR@
+#define MOLINANTRO_VERSION_PATCH @MOLINANTRO_VERSION_PATCH@
+#define MOLINANTRO_VERSION_TWEAK @MOLINANTRO_VERSION_TWEAK@
+
+#define MOLINANTRO_VERSION_STRING "@MOLINANTRO_VERSION@"
+#define MOLINANTRO_VERSION_FULL_STRING "@MOLINANTRO_VERSION_FULL@"
+
+#define MOLINANTRO_BUILD_DATE "@MOLINANTRO_BUILD_DATE@"
+#define MOLINANTRO_BUILD_TIME "@MOLINANTRO_BUILD_TIME@"
+#define MOLINANTRO_BUILD_TIMESTAMP "@MOLINANTRO_BUILD_TIMESTAMP@"
+
+#define MOLINANTRO_GIT_COMMIT "@MOLINANTRO_GIT_COMMIT@"
+#define MOLINANTRO_GIT_BRANCH "@MOLINANTRO_GIT_BRANCH@"
+
+#define MOLINANTRO_NAME "MolinAntro DAW - ACME Edition"
+#define MOLINANTRO_DESCRIPTION "Professional DAW with AI Voice Cloning, Neural Mastering & SOTA Features"
+#define MOLINANTRO_VENDOR "MolinAntro Technologies"
+#define MOLINANTRO_COPYRIGHT "Copyright (c) 2025 MolinAntro Technologies. All rights reserved."
+#define MOLINANTRO_WEBSITE "https://github.com/MolinAntro/MolinAntro-Music"
+
+namespace MolinAntro {
+namespace Version {
+
+inline const char* getName() { return MOLINANTRO_NAME; }
+inline const char* getVersion() { return MOLINANTRO_VERSION_STRING; }
+inline const char* getFullVersion() { return MOLINANTRO_VERSION_FULL_STRING; }
+inline const char* getBuildDate() { return MOLINANTRO_BUILD_DATE; }
+inline const char* getBuildTime() { return MOLINANTRO_BUILD_TIME; }
+inline const char* getGitCommit() { return MOLINANTRO_GIT_COMMIT; }
+inline const char* getGitBranch() { return MOLINANTRO_GIT_BRANCH; }
+inline const char* getDescription() { return MOLINANTRO_DESCRIPTION; }
+inline const char* getVendor() { return MOLINANTRO_VENDOR; }
+inline const char* getCopyright() { return MOLINANTRO_COPYRIGHT; }
+inline const char* getWebsite() { return MOLINANTRO_WEBSITE; }
+
+inline int getMajor() { return MOLINANTRO_VERSION_MAJOR; }
+inline int getMinor() { return MOLINANTRO_VERSION_MINOR; }
+inline int getPatch() { return MOLINANTRO_VERSION_PATCH; }
+inline int getTweak() { return MOLINANTRO_VERSION_TWEAK; }
+
+} // namespace Version
+} // namespace MolinAntro

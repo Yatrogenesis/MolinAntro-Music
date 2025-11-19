@@ -53,6 +53,32 @@ struct MIDIMessage {
 };
 
 /**
+ * @brief MIDI Note structure (for musical sequences)
+ */
+struct Note {
+    int note{60};              ///< MIDI note number (0-127)
+    int velocity{100};         ///< Velocity (0-127)
+    float timestamp{0.0f};     ///< Start time in seconds
+    float duration{0.5f};      ///< Duration in seconds
+    int channel{0};            ///< MIDI channel (0-15)
+};
+
+/**
+ * @brief MIDI Sequence (collection of notes)
+ */
+class Sequence {
+public:
+    void addNote(const Note& note) { notes_.push_back(note); }
+    const std::vector<Note>& getNotes() const { return notes_; }
+    std::vector<Note>& getNotes() { return notes_; }
+    void clear() { notes_.clear(); }
+    size_t size() const { return notes_.size(); }
+
+private:
+    std::vector<Note> notes_;
+};
+
+/**
  * @brief Thread-safe MIDI message queue
  */
 class MIDIMessageQueue {
