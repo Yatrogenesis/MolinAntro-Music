@@ -41,12 +41,26 @@ if(ACME_EDITION OR ENABLE_AI_MODULES)
     endif()
 endif()
 
+# Platform-specific: Apple Accelerate
+if(APPLE)
+    find_library(ACCELERATE_FRAMEWORK Accelerate)
+    target_link_libraries(MolinAntro_AI PRIVATE ${ACCELERATE_FRAMEWORK})
+    target_compile_definitions(MolinAntro_AI PRIVATE ACCELERATE_NEW_LAPACK)
+endif()
+
 # Optional: CUDA support
-# find_package(CUDA)
-# if(CUDA_FOUND)
-#     target_compile_definitions(MolinAntro_AI PRIVATE __CUDA__=1)
-#     target_link_libraries(MolinAntro_AI PRIVATE ${CUDA_LIBRARIES})
-# endif()
+find_package(CUDAToolkit)
+if(CUDAToolkit_FOUND)
+    target_compile_definitions(MolinAntro_AI PRIVATE ENABLE_CUDA=1)
+    target_link_libraries(MolinAntro_AI PRIVATE CUDA::cudart CUDA::cufft CUDA::cublas)
+endif()
+
+# Optional: OpenCL support
+find_package(OpenCL)
+if(OpenCL_FOUND)
+    target_compile_definitions(MolinAntro_AI PRIVATE ENABLE_OPENCL=1)
+    target_link_libraries(MolinAntro_AI PRIVATE OpenCL::OpenCL)
+endif()
 
 # Compiler settings
 target_compile_features(MolinAntro_AI PUBLIC cxx_std_20)
