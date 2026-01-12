@@ -124,3 +124,6 @@ Desktop.ini
 # Linux
 .directory
 .Trash-*
+
+# AI Models
+models/*.onnx
