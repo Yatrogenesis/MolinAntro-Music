@@ -67,6 +67,32 @@ add_subdirectory(src/plugins)
 add_subdirectory(src/utils)
 
 # AI Module (ACME Edition) - Voice Cloning, AI Mastering, Musical Analysis
+# Integration of ONNX Runtime for real neural inference
+if(ACME_EDITION OR ENABLE_AI_MODULES)
+    include(FetchContent)
+    message(STATUS "Fetching ONNX Runtime...")
+    # Using a known stable release compatible with macOS/Windows/Linux
+    FetchContent_Declare(
+        onnxruntime
+        URL https://github.com/microsoft/onnxruntime/releases/download/v1.17.1/onnxruntime-osx-universal2-1.17.1.tgz
+        # Note: In a real multi-platform scenario, we would select the URL based on ${CMAKE_SYSTEM_NAME} and ${CMAKE_SYSTEM_PROCESSOR}
+        # For this specific user (Mac), using universal2 binary. 
+        # Fallback to source build or system find if needed in future.
+    )
+    FetchContent_MakeAvailable(onnxruntime)
+    
+    # Locate the libraries and headers from the fetched package
+    set(ONNXRUNTIME_ROOT "${onnxruntime_SOURCE_DIR}")
+    set(ONNXRUNTIME_INCLUDE_DIR "${ONNXRUNTIME_ROOT}/include")
+    set(ONNXRUNTIME_LIB_DIR "${ONNXRUNTIME_ROOT}/lib")
+    
+    include_directories(${ONNXRUNTIME_INCLUDE_DIR})
+    link_directories(${ONNXRUNTIME_LIB_DIR})
+    
+    message(STATUS "ONNX Runtime Root: ${ONNXRUNTIME_ROOT}")
+endif()
+
+# AI Module (ACME Edition) - Voice Cloning, AI Mastering, Musical Analysis
 add_subdirectory(src/ai)
 
 # Standalone application

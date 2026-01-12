@@ -22,6 +22,8 @@ BUILD_TESTS=ON
 BUILD_DOCS=OFF
 ENABLE_ASAN=OFF
 VERBOSE=OFF
+ACME_EDITION=OFF
+ENABLE_GPU=OFF
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -51,6 +53,18 @@ while [[ $# -gt 0 ]]; do
             VERBOSE=ON
             shift
             ;;
+        --target)
+            if [ "$2" = "ACME_Edition" ]; then
+                ACME_EDITION=ON
+                echo -e "${GREEN}★ ACME Edition Enabled${NC}"
+            fi
+            shift 2
+            ;;
+        --enable-gpu)
+            ENABLE_GPU=ON
+            echo -e "${GREEN}★ GPU Acceleration Enabled${NC}"
+            shift
+            ;;
         --clean)
             echo -e "${YELLOW}Cleaning build directory...${NC}"
             rm -rf "$BUILD_DIR"
@@ -70,6 +84,8 @@ while [[ $# -gt 0 ]]; do
             echo "  --asan          Enable AddressSanitizer (Debug mode)"
             echo "  --verbose       Verbose build output"
             echo "  --clean         Clean build directory"
+            echo "  --target [trg]  Set build target (e.g., ACME_Edition)"
+            echo "  --enable-gpu    Enable GPU acceleration"
             echo "  --help          Show this help"
             echo ""
             exit 0
@@ -127,6 +143,9 @@ cmake -B "$BUILD_DIR" \
     -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX" \
     -DBUILD_TESTS="$BUILD_TESTS" \
     -DENABLE_ASAN="$ENABLE_ASAN" \
+    -DACME_EDITION="$ACME_EDITION" \
+    -DENABLE_AI_MODULES="$ACME_EDITION" \
+    -DENABLE_GPU="$ENABLE_GPU" \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 if [ $? -ne 0 ]; then

@@ -3,12 +3,14 @@
 # Build directories
 build/
 build-*/
+build_*/
 cmake-build-*/
 out/
 bin/
 lib/
 dist/
 packages/
+.cache/
 
 # IDE and editor files
 .vscode/
@@ -34,6 +36,8 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 *.cmake
+!cmake/*.cmake
+
 
 # Visual Studio
 *.suo

@@ -32,11 +32,14 @@ if(UNIX AND NOT APPLE)
 endif()
 
 # Optional: ONNX Runtime (for production ML models)
-# find_package(onnxruntime)
-# if(onnxruntime_FOUND)
-#     target_link_libraries(MolinAntro_AI PRIVATE onnxruntime::onnxruntime)
-#     target_compile_definitions(MolinAntro_AI PRIVATE HAVE_ONNX=1)
-# endif()
+if(ACME_EDITION OR ENABLE_AI_MODULES)
+    target_link_libraries(MolinAntro_AI PRIVATE onnxruntime)
+    target_compile_definitions(MolinAntro_AI PRIVATE HAVE_ONNX=1)
+    # Ensure includes are found if not propagated by FetchContent
+    if(ONNXRUNTIME_INCLUDE_DIR)
+        target_include_directories(MolinAntro_AI PRIVATE ${ONNXRUNTIME_INCLUDE_DIR})
+    endif()
+endif()
 
 # Optional: CUDA support
 # find_package(CUDA)
