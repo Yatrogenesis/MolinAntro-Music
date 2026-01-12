@@ -26,11 +26,23 @@ MolinAntro DAW is a next-generation digital audio workstation designed to surpas
 - **Multi-format support**: VST2/3, AU, AAX, CLAP, LV2
 - **GPU acceleration**: CUDA/Metal/OpenCL
 
-### AI & Machine Learning (ACME Edition)
-- 🤖 **Voice Cloning**: Real-time voice style transfer using ONNX Runtime.
-- 🎛️ **AI Mastering**: Automated track mastering with configurable style profiles (Pop, Electronic, Jazz, Classical).
-- ✨ **Smart Mixing**: Intelligent level balancing and EQ suggestions.
-- 🎼 **Stem Separation**: High-fidelity source separation.
+### 🧠 Real AI Features (ACME Edition)
+
+MolinAntro DAW ACME Edition integrates **Microsoft ONNX Runtime** for professional-grade neural inference.
+
+### Requirements
+- **Models**: You must download the required `.onnx` model weights to `models/`.
+  - `hubert_base.onnx` (Content Encoder)
+  - `final_rvc.onnx` (RVC Generator)
+  - `mastering_v1.onnx` (Neural Mastering)
+- **Use the Script**: Run `scripts/download_models.sh` to setup initial placeholders or download real weights.
+
+### DSP Logic
+- **Voice Cloning**: Uses RVC (Retrieval-based Voice Conversion) V2 architecture.
+  - Fallback: High-quality Phase Vocoder / Granular Pitch Shifting (if models missing).
+- **Mastering**: Hybrid Neural + Analog-Modeled DSP.
+  - 64-bit precision Biquad IIR Filters.
+  - Lookahead Limiter for transparent loudness maximization.
 
 ### Advanced Capabilities
 - 📊 **Spectral Editing** - Frequency-domain visual editing
