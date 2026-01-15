@@ -255,6 +255,10 @@ private:
     bool checkConflict(const ProjectChange& local, const ProjectChange& remote);
     ProjectChange mergeChanges(const ProjectChange& local, const ProjectChange& remote);
 
+    // REAL networking handlers
+    void handleIncomingMessage(int type, const std::string& payload);
+    void handleIncomingBinaryMessage(int type, const std::vector<uint8_t>& data);
+
     bool connected_ = false;
     bool syncing_ = false;
 

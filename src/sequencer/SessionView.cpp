@@ -15,6 +15,7 @@
  */
 
 #include "sequencer/SessionView.h"
+#include "sequencer/WarpEngine.h"
 #include <algorithm>
 #include <cmath>
 #include <random>
@@ -158,24 +159,71 @@ void Track::processAudio(Core::AudioBuffer& buffer, double bpm) {
     Core::AudioBuffer* clipBuffer = clip->getAudioBuffer();
     if (!clipBuffer) return;
 
-    const int numChannels = std::min(buffer.getNumChannels(), clipBuffer->getNumChannels());
-    const int numSamples = buffer.getNumSamples();
-    const int clipSamples = clipBuffer->getNumSamples();
+    // =========================================================================
+    // REAL TIME-STRETCHING IMPLEMENTATION
+    // =========================================================================
 
-    // Calculate playback position in samples
-    // TODO: Implement warping/time-stretching here
-    double playPos = 0.0; // This would be tracked per-clip
+    // Get clip's original BPM (stored in clip) and target BPM
+    double clipOriginalBPM = clip->getOriginalBPM();
+    double targetBPM = bpm;
+
+    // If warping is enabled and tempos differ, apply time-stretching
+    Core::AudioBuffer* sourceBuffer = clipBuffer;
+    std::unique_ptr<Core::AudioBuffer> warpedBuffer;
+
+    if (clip->isWarpEnabled() && clipOriginalBPM > 0 && targetBPM > 0) {
+        double tempoRatio = std::abs(clipOriginalBPM - targetBPM);
+
+        // Only warp if tempo difference is significant (> 0.5 BPM)
+        if (tempoRatio > 0.5) {
+            static WarpEngine warpEngine;
+            warpEngine.setAlgorithm(WarpAlgorithm::WSOLA);  // WSOLA for real-time
+
+            warpedBuffer = std::make_unique<Core::AudioBuffer>(
+                warpEngine.warp(*clipBuffer, clipOriginalBPM, targetBPM, 48000)
+            );
+            sourceBuffer = warpedBuffer.get();
+        }
+    }
+
+    const int numChannels = std::min(buffer.getNumChannels(), sourceBuffer->getNumChannels());
+    const int numSamples = buffer.getNumSamples();
+    const int clipSamples = sourceBuffer->getNumSamples();
+
+    // Get current playback position from clip
+    double playPos = clip->getPlayPosition();
 
     for (int ch = 0; ch < numChannels; ++ch) {
         float* out = buffer.getWritePointer(ch);
-        const float* clipData = clipBuffer->getReadPointer(ch);
+        const float* clipData = sourceBuffer->getReadPointer(ch);
 
+        double channelPos = playPos;
         for (int i = 0; i < numSamples; ++i) {
-            int srcIdx = static_cast<int>(playPos) % clipSamples;
-            out[i] += clipData[srcIdx];
-            playPos += 1.0; // TODO: Apply warp ratio
+            // Use linear interpolation for sub-sample accuracy
+            int srcIdx = static_cast<int>(channelPos);
+            double frac = channelPos - srcIdx;
+
+            if (srcIdx + 1 < clipSamples) {
+                // Linear interpolation for smooth playback
+                out[i] += clipData[srcIdx] * (1.0f - frac) +
+                          clipData[srcIdx + 1] * frac;
+            } else if (srcIdx < clipSamples) {
+                out[i] += clipData[srcIdx % clipSamples];
+            }
+
+            channelPos += 1.0;
         }
     }
+
+    // Update clip play position (with loop handling)
+    playPos += numSamples;
+    if (clip->isLooping() && clipSamples > 0) {
+        double loopEnd = clip->getLoopEnd() > 0 ? clip->getLoopEnd() : clipSamples;
+        while (playPos >= loopEnd) {
+            playPos -= (loopEnd - clip->getLoopStart());
+        }
+    }
+    clip->setPlayPosition(playPos);
 
     // Apply track gain and pan
     float linearGain = std::pow(10.0f, volumeDb_ / 20.0f);

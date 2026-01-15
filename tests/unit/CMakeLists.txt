@@ -16,6 +16,53 @@ target_link_libraries(UnitTests
         GTest::gmock
 )
 
+# =============================================================================
+# WarpEngine Tests (Time-Stretching Algorithms)
+# =============================================================================
+add_executable(WarpEngineTests WarpEngineTest.cpp)
+
+target_link_libraries(WarpEngineTests
+    PRIVATE
+        MolinAntro_Core
+        MolinAntro_DSP
+        MolinAntro_Sequencer
+        GTest::gtest_main
+        GTest::gmock
+)
+
+target_include_directories(WarpEngineTests
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+gtest_discover_tests(WarpEngineTests
+    PROPERTIES
+        LABELS "warp;dsp;unit"
+)
+
+# =============================================================================
+# CloudCollaboration Tests (Networking)
+# =============================================================================
+add_executable(CloudCollaborationTests CloudCollaborationTest.cpp)
+
+target_link_libraries(CloudCollaborationTests
+    PRIVATE
+        MolinAntro_Core
+        MolinAntro_Cloud
+        GTest::gtest_main
+        GTest::gmock
+)
+
+target_include_directories(CloudCollaborationTests
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+gtest_discover_tests(CloudCollaborationTests
+    PROPERTIES
+        LABELS "cloud;network;unit"
+)
+
 target_include_directories(UnitTests
     PRIVATE
         ${CMAKE_SOURCE_DIR}/include

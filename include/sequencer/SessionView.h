@@ -108,6 +108,18 @@ public:
     bool isWarpEnabled() const { return warpEnabled_; }
     void setOriginalTempo(double bpm) { originalTempo_ = bpm; }
     double getOriginalTempo() const { return originalTempo_; }
+    double getOriginalBPM() const { return originalTempo_; }  // Alias
+
+    // Loop settings
+    bool isLooping() const { return loopEnabled_; }
+    void setLoopStart(double samples) { loopStart_ = samples; }
+    double getLoopStart() const { return loopStart_; }
+    void setLoopEnd(double samples) { loopEnd_ = samples; }
+    double getLoopEnd() const { return loopEnd_; }
+
+    // Playback position (in samples)
+    void setPlayPosition(double pos) { playPosition_ = pos; }
+    double getPlayPosition() const { return playPosition_; }
 
     // Playback control
     void launch();
