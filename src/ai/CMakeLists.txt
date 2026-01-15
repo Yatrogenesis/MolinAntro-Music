@@ -9,6 +9,7 @@ add_library(MolinAntro_AI
     AIMastering.cpp
     MusicalAnalysis.cpp
     GPUAccelerator.cpp
+    SmartInstruments.cpp
 )
 
 target_include_directories(MolinAntro_AI

@@ -1,5 +1,6 @@
 set(INSTRUMENTS_SOURCES
     Synthesizer.cpp
+    Sampler.cpp
 )
 
 add_library(MolinAntro_Instruments STATIC ${INSTRUMENTS_SOURCES})
@@ -13,4 +14,5 @@ target_link_libraries(MolinAntro_Instruments
     PUBLIC
         MolinAntro_Core
         MolinAntro_MIDI
+        MolinAntro_DSP
 )

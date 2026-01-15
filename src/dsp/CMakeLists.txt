@@ -3,6 +3,7 @@ set(DSP_SOURCES
     Effects.cpp
     SpectralProcessor.cpp
     StemSeparation.cpp
+    NoiseReduction.cpp
 )
 
 add_library(MolinAntro_DSP STATIC ${DSP_SOURCES})
