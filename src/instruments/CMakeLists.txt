@@ -1,6 +1,7 @@
 set(INSTRUMENTS_SOURCES
     Synthesizer.cpp
     Sampler.cpp
+    DrumMachine.cpp
 )
 
 add_library(MolinAntro_Instruments STATIC ${INSTRUMENTS_SOURCES})
