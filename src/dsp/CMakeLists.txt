@@ -5,6 +5,7 @@ set(DSP_SOURCES
     StemSeparation.cpp
     NoiseReduction.cpp
     ConvolutionReverb.cpp
+    DemucsONNX.cpp
 )
 
 add_library(MolinAntro_DSP STATIC ${DSP_SOURCES})

@@ -1,373 +1,267 @@
-# MolinAntro DAW v2.0 - SOTA Professional Edition
+# MolinAntro DAW v3.0.0 - ACME Professional Edition
 
-## 🎵 State-of-the-Art Digital Audio Workstation
+## Professional Digital Audio Workstation with Hybrid AI Architecture
 
-**Status**: ✅ **SOTA Architecture Complete** | 🚀 **Ready for Professional Deployment**
-
----
-
-## 🌟 **Overview**
-
-MolinAntro DAW v2.0 represents a **complete professional audio production suite** matching and exceeding the capabilities of:
-
-- ✅ **Ableton Live 12.3** - Session view, warping, Max integration
-- ✅ **FL Studio** - Piano roll, pattern-based workflow
-- ✅ **Reason 13/14** - Modular rack, CV routing
-- ✅ **Adobe Audition** - Spectral editing, forensic analysis
-- ✅ **Military-Grade Tools** - Encryption, authentication, ENF analysis
+**Status**: Production-Ready Core Engine | AI Infrastructure Complete | Qt6 GUI Framework Implemented
 
 ---
 
-## 📊 **Feature Comparison Matrix**
+## Overview
 
-| Feature Category | MolinAntro v2.0 | Ableton Live 12 | FL Studio | Reason 13 | Audition |
-|-----------------|----------------|-----------------|-----------|-----------|----------|
-| **Audio Engine** | ✅ 64-bit/384kHz | ✅ 64-bit/192kHz | ✅ 64-bit/384kHz | ✅ 64-bit/192kHz | ✅ 64-bit/192kHz |
-| **MIDI Engine** | ✅ Full + MPE | ✅ Full | ✅ Full | ✅ Full | ❌ Basic |
-| **Plugin Hosting** | ✅ VST3/AU/AAX/CLAP | ✅ VST3/AU | ✅ VST3/AU | ✅ VST3/AU/RE | ✅ VST3 |
-| **Built-in Effects** | ✅ 20+ Pro FX | ✅ 50+ FX | ✅ 80+ FX | ✅ 60+ FX | ✅ 40+ FX |
-| **Instruments** | ✅ Sampler + Synths | ✅ Sampler + Synths | ✅ Multiple | ✅ Multiple | ❌ None |
-| **Spectral Editor** | ✅ FFT 32768 | ❌ None | ❌ None | ❌ None | ✅ FFT 65536 |
-| **AI Features** | ✅ Stem Sep + Auto-mix | ❌ None | ❌ None | ❌ None | ✅ AI Enhance |
-| **Forensic Tools** | ✅ ENF + Auth | ❌ None | ❌ None | ❌ None | ✅ Forensics |
-| **Security** | ✅ Military AES-256 | ❌ None | ❌ None | ❌ None | ❌ None |
-| **Session View** | ✅ Yes | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **Modular Rack** | ✅ Yes | ❌ No | ❌ No | ✅ Yes | ❌ No |
-| **Piano Roll** | ✅ FL-Style | ✅ Basic | ✅ Advanced | ✅ Basic | ❌ No |
-| **Price** | **$299** | $449 | $199 | $499 | $22.99/mo |
+MolinAntro DAW is a **C++ native audio workstation** designed for professional audio production, forensic analysis, and military/government applications. Unlike Python-based audio tools, MolinAntro runs **native ONNX inference** within the C++ audio engine for true real-time performance.
 
-**Verdict**: **MolinAntro combines the best of ALL DAWs in ONE package** 🏆
+### Core Philosophy: Graceful Degradation Architecture
 
----
+MolinAntro implements a **Hybrid Processing Architecture** that guarantees reliable output regardless of hardware capabilities:
 
-## ⚡ **SOTA Capabilities**
-
-### 1. **Core Audio Engine** (100% Complete ✅)
-
-```cpp
-// Professional-grade audio processing
-- Sample rates: 8 kHz - 384 kHz
-- Bit depth: 64-bit float internal
-- Latency: Down to 0.67ms (32 samples @ 48kHz)
-- Channels: Up to 256 simultaneous
-- CPU: Multi-threaded, SIMD-optimized
-- Performance: >500x real-time processing
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PROCESSING PIPELINE                       │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: Neural Inference (ONNX Runtime)                   │
+│  ├── GPU Accelerated (CUDA/Metal/DirectML)                  │
+│  ├── CPU Optimized (AVX2/NEON)                             │
+│  └── Requires: Trained .onnx models                        │
+│                         │                                   │
+│                         ▼ (Model not available?)            │
+│  Layer 2: Deterministic DSP Fallback                        │
+│  ├── NMF (Non-negative Matrix Factorization)               │
+│  ├── Expert Rules Engine (Genre-specific heuristics)       │
+│  └── Classical DSP algorithms (always available)           │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### 2. **MIDI Engine** (100% Complete ✅)
+**Why this matters**: Enterprise/military deployments require **100% uptime guarantees**. If a GPU fails or models are unavailable, the system continues operating with deterministic algorithms.
 
+---
+
+## Technical Architecture
+
+### 1. Audio Engine (100% Complete)
+
+Native C++20 real-time audio processing:
+
+| Specification | Value |
+|--------------|-------|
+| Sample Rates | 8 kHz - 384 kHz |
+| Bit Depth | 64-bit float internal |
+| Latency | 0.67ms minimum (32 samples @ 48kHz) |
+| Channels | Up to 256 simultaneous |
+| Processing | SIMD-optimized (AVX2/NEON) |
+| Thread Model | Lock-free audio graph |
+
+### 2. AI/ML Integration (Hybrid Architecture)
+
+#### ONNX Runtime Integration
 ```cpp
-// Advanced MIDI processing
-- MIDI I/O: Multi-device support
-- MPE: Full polyphonic expression
-- Sequencing: Sample-accurate timing
-- MIDI 2.0: Ready for next-gen
-- Recording: Multi-track with quantization
-- Controllers: Automatic template detection
+// Native C++ neural inference (src/ai/VoiceCloning.cpp)
+#include <onnxruntime_cxx_api.h>
+
+// Direct tensor manipulation in audio thread
+Ort::Session session(env, model_path, session_options);
+auto output = session.Run(run_options, input_names, input_tensors, ...);
 ```
 
-### 3. **Effects Suite** (Professional Grade ✅)
+**What this enables**: Real-time neural inference without Python overhead. Models trained in PyTorch/TensorFlow can be exported to ONNX and run natively.
+
+#### Stem Separation Engine
+
+| Mode | Technology | Quality | Latency | Requirements |
+|------|-----------|---------|---------|--------------|
+| Neural | ONNX models (Demucs-compatible) | Excellent | Higher | GPU recommended |
+| NMF | Non-negative Matrix Factorization | Good | Medium | CPU only |
+| Frequency Masking | Bandpass filters | Basic | Lowest | CPU only |
+
+**Current Implementation**: NMF and Frequency Masking are fully implemented. Neural backend ready for ONNX model integration.
+
+```cpp
+// src/dsp/StemSeparation.cpp - NMF Implementation
+class NMFSeparator {
+    // Statistical decomposition (not deep learning)
+    // Quality: Good for drums/bass isolation
+    // Limitation: Voice separation less accurate than Demucs
+};
+```
+
+#### AI Mastering Engine
+
+**Architecture**: Expert Rules + Neural Enhancement
+
+```cpp
+// src/ai/AIMastering.cpp
+
+// Layer 1: Attempt ONNX neural processing
+if (onnxSession_ && onnxSession_->isValid()) {
+    return neuralMaster(audio, settings);
+}
+
+// Layer 2: Expert Rules Fallback (Deterministic)
+// Genre-specific EQ curves based on professional mastering practices
+if (settings.genre == "Rock") {
+    bassBoost = 3.0dB;  // Industry standard for rock
+    highShelf = 2.0dB;
+}
+else if (settings.genre == "Jazz") {
+    bassBoost = 1.0dB;  // Subtle warmth
+    highShelf = 0.5dB;  // Air frequencies
+}
+// ... 12 genre presets total
+```
+
+**Value Proposition**: The Expert Rules layer is not a "fallback hack" - it's a **low-latency deterministic mastering engine** based on professional mastering practices. Many mastering engineers use similar rule-based approaches as starting points.
+
+### 3. DSP Suite (100% Complete)
+
+All algorithms implemented from scratch in C++:
 
 #### Dynamics
-- **Compressor**: Threshold, ratio, attack/release, knee, makeup gain
-- **Limiter**: Brick-wall, look-ahead, true-peak detection
-- **Gate**: Noise gate with hold and hysteresis
-- **Expander**: Upward/downward expansion
+- **Compressor**: Knee, attack/release, makeup gain, sidechain
+- **Limiter**: True-peak, look-ahead (4ms), brick-wall
+- **Noise Gate**: Hold, hysteresis, sidechain filter
 
-#### EQ & Filters
-- **Parametric EQ**: 4-band, 6 filter types per band
-- **Graphic EQ**: 31-band, 1/3 octave
-- **Dynamic EQ**: Frequency-dependent compression
-- **Linear Phase EQ**: Zero phase distortion
+#### Equalization
+- **Parametric EQ**: 4-band, 6 filter types (LP/HP/BP/Notch/LS/HS)
+- **Biquad Filters**: Direct Form II Transposed (64-bit coefficients)
+- **Linear Phase**: FFT-based zero-phase EQ
 
-#### Time-based
-- **Reverb**: Algorithmic (Freeverb-style), Convolution
-- **Delay**: Stereo, ping-pong, multi-tap
-- **Chorus**: Multi-voice, stereo spread
-- **Flanger/Phaser**: Modulated delays
+#### Time-Based
+- **Reverb**: Algorithmic (Freeverb) + Convolution (FFT-partitioned, zero-latency)
+- **Delay**: Stereo, ping-pong, multi-tap, tempo-synced
+- **Chorus/Flanger**: Multi-voice modulation
 
-#### Distortion
-- **Saturator**: 5 modes (soft/hard/tube/tape/digital)
-- **Bitcrusher**: Sample rate + bit depth reduction
+#### Saturation
+- **Saturator**: Soft clip, hard clip, tube, tape, digital (5 modes)
 - **Waveshaper**: Custom transfer functions
 
-#### Spatial
-- **Stereo Widener**: M/S processing
-- **Haas Effect**: Psychoacoustic stereo
-- **Binaural Panner**: 3D audio positioning
+### 4. Convolution Reverb (NEW - v3.0.0)
 
-### 4. **Plugin Hosting** (VST3/AU/AAX/CLAP ✅)
+Professional FFT-based convolution engine:
 
 ```cpp
-// Industry-standard plugin support
-- VST3: Full implementation, sandboxed
-- VST2: Legacy support
-- AU: macOS native
-- AAX: Pro Tools compatibility
-- CLAP: Next-generation format
-- Features:
-  * Automatic delay compensation
-  * Multi-threaded processing
-  * Parameter automation
-  * Preset management
-  * Plugin scanning & validation
+// include/dsp/ConvolutionReverb.h
+class ConvolutionReverb : public AudioEffect {
+    // Partitioned convolution for zero latency
+    // True stereo IR support (4-channel: LL, LR, RL, RR)
+    // IR Factory: Room, Plate, Spring, Hall synthesis
+    // Max IR: 960,000 samples (~20 seconds @ 48kHz)
+};
 ```
 
-### 5. **Instruments** (Professional Collection ✅)
+### 5. Forensic Analysis (Military/Government Grade)
 
-#### Sampler
-```cpp
-- Multi-sample support (round-robin, velocity layers)
-- Time-stretching & pitch-shifting
-- Loop points with crossfade
-- Envelope generators (ADSR)
-- Filters & modulation
-- Effects chain per voice
-```
+| Feature | Implementation | Status |
+|---------|---------------|--------|
+| ENF Analysis | Goertzel algorithm, harmonic tracking | Complete |
+| Watermarking | Spread Spectrum, Echo Hiding, Patchwork DCT | Complete |
+| Authentication | SHA-256 hash chains | Complete |
+| Spectral Anomaly | Statistical deviation detection | Complete |
+| Edit Detection | Planned | In Progress |
 
-#### Synthesizer
-```cpp
-- Architecture: 2 OSC + Sub + Noise
-- Oscillators: Saw, Square, Triangle, Sine, Wavetable
-- Filter: Moog-style 24dB/oct ladder filter
-- Modulation: 3 LFOs, 3 Envelopes
-- Effects: Built-in chorus, delay, reverb
-- Polyphony: Up to 128 voices
-```
+**Note on "Military-Grade"**: Security features implement standard cryptographic algorithms (AES-256-GCM, RSA-4096). The term refers to compliance with government procurement standards, not exotic military technology.
 
-#### Drum Machine
-```cpp
-- 16 pads with individual outputs
-- Sample layering
-- Velocity sensitivity
-- Per-pad effects
-- Pattern sequencer
-- Swing & humanization
-```
+### 6. Network Collaboration
 
-### 6. **Spectral Editor** (Adobe Audition-Level ✅)
+Real WebSocket implementation (not a mock):
 
 ```cpp
-// Advanced frequency-domain editing
-- FFT sizes: 32 - 32768 points
-- Spectral selection & editing
-- Frequency/time resolution trade-off
-- Phase vocoder for time-stretch
-- Harmonic/percussive separation
-- Spectral repair (AI-powered)
-- Noise reduction (learning mode)
+// src/cloud/CloudCollaboration.cpp
+class CloudCollaboration {
+    // WebSocket client with automatic reconnection
+    // JSON serialization with input sanitization
+    // Operational Transformation for conflict resolution
+    // Session state machine management
+};
 ```
 
-### 7. **AI Features** (State-of-the-Art ✅)
+### 7. Qt6 GUI Framework (NEW - v3.0.0)
 
-#### Stem Separation
-```python
-# Spleeter/Demucs integration
-- Vocals / Drums / Bass / Other
-- 4-stem / 5-stem models
-- Real-time preview
-- GPU acceleration (CUDA/Metal)
-```
+Professional desktop interface:
 
-#### Auto-Mixing
-```python
-# ML-based mixing assistant
-- Automatic EQ suggestion
-- Compression parameters
-- Reverb/delay sends
-- Pan positioning
-- Gain staging
-- LUFS normalization
-```
+| Component | Description |
+|-----------|-------------|
+| Main Window | Dockable panels, layout persistence |
+| Transport | Play/Stop/Record/Loop/Metronome |
+| Mixer | Channel strips with faders, meters, M/S/R |
+| Browser | Category filtering, search |
+| Arrangement | Timeline with zoom/scroll |
+| Session | Ableton-style clip launcher (8x8 grid) |
+| Piano Roll | MIDI editor with velocity |
+| Widgets | Knobs, meters, waveform, spectrum analyzer |
 
-#### Voice Enhancement
-```python
-# AI-powered voice processing
-- Noise reduction
-- De-essing
-- Breath removal
-- Clarity enhancement
-- Pitch correction (auto-tune style)
-```
+**Accessibility Standards**:
+- Minimum button size: 44x32px (touch-friendly)
+- Minimum font size: 13px
+- Visible scrollbars: 14px width
+- HiDPI support via devicePixelRatio
 
-### 8. **Forensic Analysis** (Military-Grade ✅)
+### 8. Plugin Hosting (In Progress)
 
-```cpp
-// Professional audio forensics
-- ENF Analysis: Electrical network frequency dating
-- Watermarking: Embed/detect inaudible markers
-- Authentication: Digital signatures & integrity
-- Edit Detection: Identify splices & manipulation
-- Spectral Anomalies: ML-based anomaly detection
-- Chain of Custody: Cryptographic logging
-```
-
-### 9. **Security** (Military-Grade ✅)
-
-```cpp
-// AES-256 encryption & security
-- Project Encryption: Password-protected sessions
-- File Encryption: AES-256-GCM
-- Secure Erase: DoD 5220.22-M standard
-- Digital Signatures: RSA-4096
-- Tamper Detection: HMAC verification
-- Audit Logging: Complete operation history
-```
-
-### 10. **GUI** (Professional Interface ✅)
-
-```cpp
-// Qt6-based professional UI
-- Main Window: Dockable panels, saved layouts
-- Mixer View: Unlimited channels, automation
-- Piano Roll: FL Studio-style, ghost notes
-- Arrangement View: Ableton-style, session/arrangement
-- Spectral View: Adobe Audition-style
-- Modular Rack: Reason-style, CV routing
-- Themes: Light/Dark, customizable
-```
+| Format | Status |
+|--------|--------|
+| VST3 | SDK integrated, native loading in progress |
+| AU | Planned (macOS) |
+| CLAP | Planned |
+| Built-in | Complete (gain, pan, utility) |
 
 ---
 
-## 🚀 **Performance Metrics**
+## What This Repository Demonstrates
 
-### Benchmarks (Real Hardware)
+For **Engineering Consultancy** purposes, this codebase demonstrates:
 
-| Metric | Value | Industry Standard |
-|--------|-------|-------------------|
-| **Latency** | 0.67ms @ 32 samples | 1-2ms |
-| **CPU Usage** | 3% idle, 25% full mix | 5-30% |
-| **Processing** | 500x real-time | 100-200x |
-| **Track Count** | Unlimited* | 100-500 |
-| **Plugin Count** | Unlimited* | 50-200 |
-| **Sample Rate** | Up to 384kHz | 96-192kHz |
-| **Bit Depth** | 64-bit float | 32-bit float |
+1. **Native AI Infrastructure**: C++ ONNX Runtime integration for real-time neural inference (the hardest part of deploying ML in audio)
 
-*Limited only by system resources
+2. **Hybrid Architecture Design**: Production systems need fallbacks. The Neural + Deterministic dual-layer approach is enterprise-grade engineering.
 
-### Optimization
+3. **DSP From Scratch**: Biquad filters, limiters, compressors, FFT convolution - all implemented without JUCE/iPlug dependencies.
 
-- **SIMD**: AVX2/AVX-512 (x86), NEON/SVE (ARM)
-- **Multi-threading**: TBB (Thread Building Blocks)
-- **GPU**: CUDA/Metal/OpenCL for heavy processing
-- **Memory**: Lock-free algorithms, pre-allocated pools
+4. **Real Networking**: Not a mock. WebSocket client with OT-style conflict resolution.
+
+5. **Professional GUI**: Qt6 with proper accessibility standards.
 
 ---
 
-## 📦 **Deployment Package**
+## Build Requirements
 
-### Included Components
-
-```
-MolinAntroDaw-v2.0-Professional/
-├── bin/
-│   ├── MolinAntroDaw          # Main application
-│   ├── MolinAntroFX           # Standalone effects
-│   └── MolinAntroAnalyzer     # Forensic analyzer
-├── lib/
-│   ├── libMolinAntroCore.so
-│   ├── libMolinAntroDSP.so
-│   ├── libMolinAntroMIDI.so
-│   └── libMolinAntroAI.so
-├── plugins/
-│   ├── VST3/
-│   ├── AU/
-│   └── AAX/
-├── presets/
-│   ├── Effects/
-│   ├── Instruments/
-│   └── Templates/
-├── samples/
-│   └── Factory Library (5GB)
-├── docs/
-│   ├── User Manual.pdf
-│   ├── Quick Start.pdf
-│   └── API Reference.pdf
-└── LICENSE
+```bash
+cmake -B build -DBUILD_QT6_GUI=ON
+cmake --build build
 ```
 
-### Platform Support
-
-- ✅ **Linux**: Ubuntu 20.04+, Fedora 35+, Arch
-- ✅ **macOS**: 11.0+ (Big Sur), Apple Silicon native
-- ✅ **Windows**: 10/11 (64-bit), ASIO drivers included
-
----
-
-## 🎯 **Use Cases**
-
-### Music Production
-- Electronic music (Ableton-style workflow)
-- Hip-hop/beat making (FL Studio-style)
-- Rock/band recording (traditional DAW)
-- Film scoring (unlimited tracks)
-
-### Post-Production
-- Film audio editing
-- Podcast production
-- Voiceover recording
-- Sound design
-
-### Professional Audio
-- Mastering (AI-assisted)
-- Mixing (auto-mix suggestions)
-- Restoration (spectral repair)
-- Analysis (forensic tools)
-
-### Specialized
-- Forensic audio analysis
-- Military signal processing
-- Academic research
-- Audio authentication
+| Dependency | Version | Purpose |
+|------------|---------|---------|
+| CMake | 3.20+ | Build system |
+| C++ Compiler | C++20 (Clang 15+, GCC 11+, MSVC 19.30+) | Compilation |
+| ONNX Runtime | 1.16+ | Neural inference |
+| Qt6 | 6.2+ | GUI (optional) |
+| PortAudio | Latest | Audio I/O |
 
 ---
 
-## 💰 **Pricing**
+## Honest Assessment
 
-| Edition | Price | Features |
-|---------|-------|----------|
-| **Free** | $0 | Core DAW, 10 tracks, basic effects |
-| **Studio** | $199 | Unlimited tracks, all effects, VST hosting |
-| **Professional** | $299 | + AI features, forensic tools |
-| **Enterprise** | $999 | + Military encryption, priority support |
+| Category | Implementation | Status |
+|----------|---------------|--------|
+| Core Audio Engine | Native C++, lock-free, SIMD | Excellent |
+| MIDI Engine | MPE, MIDI 2.0 ready | Complete |
+| DSP Effects | From scratch, 64-bit | Complete |
+| AI Infrastructure | ONNX Runtime integrated | Complete |
+| Neural Models | Ready for integration | Models needed |
+| Stem Separation | NMF + Frequency (Neural ready) | Good, not SOTA |
+| AI Mastering | Expert Rules + Neural ready | Good, not SOTA |
+| Forensic Tools | ENF, watermarking, auth | Complete |
+| Plugin Hosting | VST3 SDK ready | In Progress |
+| GUI | Qt6 framework | Complete |
 
-**Launch Offer**: 50% off for early adopters!
-
----
-
-## 🏆 **Awards & Recognition**
-
-- ⭐ **Best New DAW 2025** - Sound on Sound Magazine
-- ⭐ **Innovation Award** - NAMM 2025
-- ⭐ **5/5 Stars** - MusicTech Magazine
-- ⭐ **Editor's Choice** - Computer Music Magazine
+**Overall**: ~90% of infrastructure complete. Neural SOTA features require trained models.
 
 ---
 
-## 📚 **Documentation**
+## License
 
-- [Quick Start Guide](docs/QUICK_START.md)
-- [User Manual](docs/USER_MANUAL.md)
-- [API Reference](docs/API_REFERENCE.md)
-- [Video Tutorials](https://youtube.com/molinantrodaw)
-- [Forum](https://forum.molinantro.com)
+Proprietary Software - All rights reserved.
+(c) 2026 MolinAntro Technologies
 
----
-
-## 🤝 **Support**
-
-- **Email**: support@molinantro.com
-- **Forum**: https://forum.molinantro.com
-- **Discord**: https://discord.gg/molinantro
-- **GitHub**: https://github.com/molinantro/daw
-
----
-
-## 📝 **License**
-
-**Proprietary** - © 2025 MolinAntro Technologies
-All rights reserved.
-
----
-
-**MolinAntro DAW v2.0** - **The Ultimate Professional Audio Workstation** 🎵🚀
+**Author**: Francisco Molina-Burgos
+**Organization**: Avermex Research Division
+**Location**: Merida, Yucatan, Mexico
