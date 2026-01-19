@@ -21,6 +21,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(BUILD_TESTS "Build test suite" ON)
 option(BUILD_VST3 "Build VST3 plugin support" ON)
 option(BUILD_STANDALONE "Build standalone application" ON)
+option(BUILD_QT6_GUI "Build Qt6 GUI (requires Qt6)" OFF)
 option(ENABLE_GPU_ACCELERATION "Enable GPU acceleration" OFF)
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 
@@ -67,6 +68,11 @@ add_subdirectory(src/cloud)
 add_subdirectory(src/ui)
 add_subdirectory(src/plugins)
 add_subdirectory(src/utils)
+
+# Qt6 GUI (optional)
+if(BUILD_QT6_GUI)
+    add_subdirectory(src/gui)
+endif()
 
 # AI Module (ACME Edition) - Voice Cloning, AI Mastering, Musical Analysis
 # Integration of ONNX Runtime for real neural inference
